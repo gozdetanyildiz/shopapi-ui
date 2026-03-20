@@ -4,6 +4,7 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Products from './pages/products/Products';
 import ProductForm from './pages/products/ProductForm';
+import Orders from './pages/orders/Orders';
 
 const PrivateRoute = ({ children }) => {
   const { token } = useAuth();
@@ -18,6 +19,7 @@ function AppRoutes() {
       <Route path="/products" element={<PrivateRoute><Products /></PrivateRoute>} />
       <Route path="/products/new" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
       <Route path="/products/edit/:id" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
+      <Route path="/orders" element={<PrivateRoute><Orders /></PrivateRoute>} />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
