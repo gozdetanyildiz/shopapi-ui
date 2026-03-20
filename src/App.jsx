@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Products from './pages/products/Products';
+import ProductForm from './pages/products/ProductForm';
 
 const PrivateRoute = ({ children }) => {
   const { token } = useAuth();
@@ -14,14 +15,9 @@ function AppRoutes() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route
-        path="/products"
-        element={
-          <PrivateRoute>
-            <Products />
-          </PrivateRoute>
-        }
-      />
+      <Route path="/products" element={<PrivateRoute><Products /></PrivateRoute>} />
+      <Route path="/products/new" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
+      <Route path="/products/edit/:id" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
